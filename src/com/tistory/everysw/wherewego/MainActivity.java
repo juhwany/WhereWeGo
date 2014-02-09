@@ -18,11 +18,12 @@ public class MainActivity extends ActionBarActivity  {
         ActionBar bar = getSupportActionBar();
         bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         
-        bar.addTab(bar.newTab().
-                setText(R.string.tab_my_history).
-                setTabListener(new ActionBarTabListener<AddPlaceFragment>(this, AddPlaceFragment.class)));
-        //bar.addTab(bar.newTab().setText(R.string.tab_add_place).setTabListener(this));
-        //bar.addTab(bar.newTab().setText(R.string.tab_other_places).setTabListener(this));            
+        bar.addTab(bar.newTab().setText(R.string.tab_my_history)
+                .setTabListener(new ActionBarTabListener<MyHistoryFragment>(this, MyHistoryFragment.class)));
+        bar.addTab(bar.newTab().setText(R.string.tab_add_place)
+                .setTabListener(new ActionBarTabListener<AddPlaceFragment>(this, AddPlaceFragment.class)));
+        bar.addTab(bar.newTab().setText(R.string.tab_other_places)
+                .setTabListener(new ActionBarTabListener<OtherPlacesFragment>(this, OtherPlacesFragment.class)));            
         
     }
 
