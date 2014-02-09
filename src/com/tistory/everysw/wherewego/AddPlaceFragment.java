@@ -5,16 +5,20 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 
 
-public class AddPlaceFragment extends Fragment {
+public class AddPlaceFragment extends Fragment implements OnClickListener {
 
-    private SupportMapFragment fragment;
-    private GoogleMap map;    
+    private SupportMapFragment mNestedFragment;
+    private GoogleMap mMap;
+    private MapHandler mMapHandler;
+    private Button mMyLocationBtn;
     
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -23,6 +27,20 @@ public class AddPlaceFragment extends Fragment {
         
         return view;
     }
+    
+    @Override
+    public void onResume() {
+        
+        super.onResume();
+        if (mMap == null) {
+            mMap = mNestedFragment.getMap();
+            mMapHandler = new MapHandler(getActivity().getApplicationContext(), mMap);
+        }
+
+        mMyLocationBtn = (Button)getView().findViewById(R.id.myLocationBtn);
+        mMyLocationBtn.setOnClickListener(this);        
+        
+    }    
 
     // Nested Fragment doesn't support. So creates Google Map fragment, and add it to fragment dynamically.
     // http://stackoverflow.com/questions/14565460/error-opening-supportmapfragment-for-second-time
@@ -31,12 +49,23 @@ public class AddPlaceFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         
         FragmentManager fm = getChildFragmentManager();
-        fragment = (SupportMapFragment) fm.findFragmentById(R.id.map);
-        if (fragment == null) {
-            fragment = SupportMapFragment.newInstance();
-            fm.beginTransaction().replace(R.id.map, fragment).commit();
+        mNestedFragment = (SupportMapFragment) fm.findFragmentById(R.id.map);
+        if (mNestedFragment == null) {
+            mNestedFragment = SupportMapFragment.newInstance();
+            fm.beginTransaction().replace(R.id.map, mNestedFragment).commit();
+        }
+        
+    }
+
+    @Override
+    public void onClick(View v) {
+        
+        if(v.getId() == R.id.myLocationBtn) {
+            mMapHandler.updateCamera();
         }
         
     }
   
+    
+    
 }
