@@ -1,22 +1,30 @@
 package com.tistory.everysw.wherewego;
 
+
 import android.os.Bundle;
-import android.app.Activity;
-import android.view.Menu;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
+import android.widget.LinearLayout;
 
-public class MainActivity extends Activity {
+public class MainActivity extends ActionBarActivity  {
 
+    private LinearLayout mainLayout;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        
+        mainLayout = (LinearLayout)findViewById(R.id.mainLayout);
+        ActionBar bar = getSupportActionBar();
+        bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        
+        bar.addTab(bar.newTab().
+                setText(R.string.tab_my_history).
+                setTabListener(new ActionBarTabListener<AddPlaceFragment>(this, AddPlaceFragment.class)));
+        //bar.addTab(bar.newTab().setText(R.string.tab_add_place).setTabListener(this));
+        //bar.addTab(bar.newTab().setText(R.string.tab_other_places).setTabListener(this));            
+        
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
 
 }

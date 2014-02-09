@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">오빠 어디가</string>
-    <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="app_name">Where We Go</string>
+    <string name="tab_my_history">My History</string>
+    <string name="tab_add_place">Add Place</string>
+    <string name="tab_other_places">Other Places</string>
 
+    <string name="addPlace">Add My Place</string>
+    <string name="press_long_on_place">press long on the place you want to save</string> 
 </resources>
