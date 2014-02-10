@@ -1,0 +1,10 @@
+<resources>
+ <string-array name="selected">
+        <item>Restaurant</item>
+        <item>Caffe</item>
+        <item>Bar</item>
+        <item>Entertainment</item>
+        <item>Theater</item>
+        <item>Bank</item>
+    </string-array>
+</resources>
