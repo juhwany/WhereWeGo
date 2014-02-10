@@ -58,7 +58,7 @@
             android:layout_width="130dp"
             android:layout_height="match_parent"
             android:gravity="center_vertical|center_horizontal"
-            android:text="@string/add_place_category"
+            android:text="@string/add_place_rating"
             android:textColor="@color/white"            
             />
         <RatingBar
@@ -66,7 +66,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:prompt="@string/add_place_rating"
             android:textColor="@color/white"
             />        
     </LinearLayout>
